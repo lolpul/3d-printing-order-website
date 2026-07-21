@@ -5,7 +5,7 @@ Date: 2026-07-21
 ## Environment
 
 - OS: Windows
-- Node.js: local installation under `C:\Program Files\nodejs`
+- Node.js: local Windows installation
 - Package manager: npm
 - Database during build verification: skipped with `SKIP_DB=1` and a local placeholder `DATABASE_URL`
 
