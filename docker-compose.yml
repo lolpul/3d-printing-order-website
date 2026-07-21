@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: printing
+      POSTGRES_USER: printing
+      POSTGRES_PASSWORD: printing_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U printing -d printing"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://printing:printing_password@db:5432/printing
+      PORT: 3000
+    volumes:
+      - uploads_data:/app/uploads
+    ports:
+      - "127.0.0.1:3010:3000"
+
+volumes:
+  postgres_data:
+  uploads_data:
