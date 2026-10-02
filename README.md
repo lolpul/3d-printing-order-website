@@ -2,6 +2,8 @@
 
 A production-oriented MVP website for a local 3D printing service. The project combines public service pages, portfolio content, SEO, an admin area, and a local image upload pipeline prepared for later server deployment.
 
+By [Elisey Kochura (lolpul)](https://github.com/lolpul) · [Engineering portfolio](https://elisey.kochura.com).
+
 ## Live Demo
 
 No public demo URL has been verified yet.
