@@ -1,6 +1,6 @@
 # 3D Printing Order Website
 
-A production-oriented MVP website for a local 3D printing service. The project combines public service pages, portfolio content, SEO, an admin area, and a local image upload pipeline prepared for later server deployment.
+An MVP website for a local 3D printing service. The project combines public service pages, portfolio content, SEO, an admin area, and a local image upload pipeline prepared for later server deployment.
 
 By [Elisey Kochura (lolpul)](https://github.com/lolpul) · [Engineering portfolio](https://elisey.kochura.com).
 
@@ -51,6 +51,16 @@ flowchart LR
   ImagePipeline --> LocalStorage[Local uploads directory]
   PublicPages --> SEO[SEO metadata, sitemap, robots, JSON-LD]
 ```
+
+## Code highlights
+
+- [Server validation](src/lib/validation.ts): Zod schemas bound content lengths, allowed publication states, slugs, settings, and image metadata. [Focused tests](src/lib/validation.test.ts) exercise valid states and rejected slugs.
+- [Prisma-backed server actions](src/app/admin/portfolio/actions.ts): portfolio mutations check admin access and CSRF, validate form input, then persist through Prisma and revalidate affected pages. File storage and database updates are separate operations, not a distributed transaction.
+- [Image processing](src/lib/storage.ts): checks declared MIME type, byte size and detected content type, then uses Sharp to re-encode multiple WebP sizes. This is the actual local-upload implementation, not a third-party storage mock.
+- [Admin authentication](src/lib/auth.ts): signed expiring session values, HttpOnly cookie settings, password verification, and CSRF checks support the admin boundary. [Session tests](src/lib/auth.test.ts) check valid and tampered signatures; they are not a full security audit.
+- [SEO helpers](src/lib/seo.ts): builds canonical/Open Graph metadata and structured data from site settings. [Tests](src/lib/seo.test.ts) exercise the generated metadata and JSON-LD.
+
+These links point to the existing public implementation; no separate showcase or copied source is required. Build and test evidence, including its date and limits, is recorded in [verification notes](docs/verification.md).
 
 ## Technology Stack
 
