@@ -27,9 +27,10 @@ function publicPath(relative: string) {
 }
 
 export function safeUploadPath(relativePath: string) {
-  const normalized = path.normalize(relativePath).replace(/^(\.\.(\/|\\|$))+/, "");
-  const full = path.resolve(uploadRoot(), normalized);
-  if (!full.startsWith(uploadRoot())) {
+  const root = uploadRoot();
+  const full = path.resolve(root, relativePath);
+  const relative = path.relative(root, full);
+  if (relative === ".." || relative.startsWith(`..${path.sep}`) || path.isAbsolute(relative)) {
     throw new Error("Invalid upload path");
   }
   return full;
