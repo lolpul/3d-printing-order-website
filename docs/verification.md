@@ -10,7 +10,7 @@ Windows, Node.js 24.15.0, repository lockfile; synthetic loopback settings with 
 | `npm run lint` | Passed |
 | `npm run db:generate` | Passed |
 | `npm run typecheck` | Passed |
-| `npm test` | 5 files, 16 tests passed |
+| `npm test` | Before containment fix:5 files/16 tests; after approved fix:6 files/21 tests passed |
 | `npm run build` | Next.js build completed |
 | `npm run start -- --hostname 127.0.0.1 --port 3000` | Actual start checked on an unused loopback port |
 | Chromium mobile smoke | Eight routes returned 200, no page errors or horizontal overflow at 390px |

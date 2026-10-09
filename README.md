@@ -62,7 +62,7 @@ flowchart LR
 
 - [Server validation](src/lib/validation.ts): Zod schemas bound content lengths, allowed publication states, slugs, settings, and image metadata. [Focused tests](src/lib/validation.test.ts) exercise valid states and rejected slugs.
 - [Prisma-backed server actions](src/app/admin/portfolio/actions.ts): portfolio mutations check admin access and CSRF, validate form input, then persist through Prisma and revalidate affected pages. File storage and database updates are separate operations, not a distributed transaction.
-- [Image processing](src/lib/storage.ts): checks declared MIME type, byte size and detected content type, then uses Sharp to re-encode multiple WebP sizes. This is the actual local-upload implementation, not a third-party storage mock.
+- [Image processing](src/lib/storage.ts): [path-containment tests](src/lib/storage.test.ts) exercise accepted paths and rejected sibling/parent escapes. The implementation checks declared MIME type, byte size and detected content type, then uses Sharp to re-encode multiple WebP sizes. This is the actual local-upload implementation, not a third-party storage mock.
 - [Admin authentication](src/lib/auth.ts): signed expiring session values, HttpOnly cookie settings, password verification, and CSRF checks support the admin boundary. [Session tests](src/lib/auth.test.ts) check valid and tampered signatures; they are not a full security audit.
 - [SEO helpers](src/lib/seo.ts): builds canonical/Open Graph metadata and structured data from site settings. [Tests](src/lib/seo.test.ts) exercise the generated metadata and JSON-LD.
 
@@ -212,9 +212,9 @@ The public export must not include `.env`, upload contents, logs, local database
 
 ## Project Status
 
-MVP. Fresh checks passed on 2026-10-10: lint, typecheck, 16 unit tests, build and eight local pages at mobile width. See [dated verification](docs/verification.md) for commands and limits.
+MVP. Fresh checks passed on 2026-10-10: lint, typecheck, 21 unit tests, build and eight local pages at mobile width. See [dated verification](docs/verification.md) for commands and limits.
 
-Before production use, add database/admin/upload integration tests and CI, review authentication and filesystem containment edge cases, and define recovery for partial file/database failure. Passing the current tests is not a security audit.
+Before production use, remediate the dependency advisories recorded in verification, add database/admin/upload integration tests and CI, review authentication and symlink policy, and define recovery for partial file/database failure. Passing the current tests is not a security audit.
 
 ## Source and reuse
 
