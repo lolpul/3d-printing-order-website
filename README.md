@@ -4,6 +4,12 @@ An MVP website for a local 3D printing service. The project combines public serv
 
 By [Elisey Kochura (lolpul)](https://github.com/lolpul) · [Engineering portfolio](https://elisey.kochura.com).
 
+## Review in 30 seconds
+
+The engineering question is how to connect content administration, validation, image processing and public pages in one application. Start with [server actions](src/app/admin/portfolio/actions.ts), [image storage](src/lib/storage.ts) and [authentication](src/lib/auth.ts); then inspect [validation tests](src/lib/validation.test.ts) and [verification](docs/verification.md).
+
+This is a full-source MVP. The database-free local demo is verified; database/admin/upload integration and operational hardening still need separate validation. There is no GitHub Actions workflow in this repository.
+
 ## Live Demo
 
 No public demo URL has been verified yet.
@@ -126,7 +132,7 @@ Screenshots were captured from a local demo run using fictional contact data and
 Install dependencies:
 
 ```bash
-npm install
+npm ci
 ```
 
 Create a local environment file from `.env.example` and fill in the required values:
@@ -149,6 +155,27 @@ npm run dev
 ```
 
 The local development URL is printed by Next.js in the terminal.
+
+## Database-free demo
+
+After `npm ci`, build and run with synthetic local settings. On Windows PowerShell:
+
+```powershell
+$env:SKIP_DB = "1"
+$env:DATABASE_URL = "postgresql://demo:example@localhost:5432/demo"
+$env:NEXT_TELEMETRY_DISABLED = "1"
+npm.cmd run build
+npm.cmd run start -- --hostname 127.0.0.1 --port 3000
+```
+
+POSIX shells:
+
+```sh
+SKIP_DB=1 DATABASE_URL=postgresql://demo:example@localhost:5432/demo npm run build
+SKIP_DB=1 DATABASE_URL=postgresql://demo:example@localhost:5432/demo npm run start -- --hostname 127.0.0.1 --port 3000
+```
+
+Open `http://127.0.0.1:3000`. This uses fallback portfolio data; it does not test PostgreSQL or enable admin mutations. The existing screenshots describe a local fictional-data run, not a deployed business.
 
 ## Docker
 
@@ -185,4 +212,10 @@ The public export must not include `.env`, upload contents, logs, local database
 
 ## Project Status
 
-MVP
+MVP. Fresh checks passed on 2026-10-10: lint, typecheck, 16 unit tests, build and eight local pages at mobile width. See [dated verification](docs/verification.md) for commands and limits.
+
+Before production use, add database/admin/upload integration tests and CI, review authentication and filesystem containment edge cases, and define recovery for partial file/database failure. Passing the current tests is not a security audit.
+
+## Source and reuse
+
+This repository already contains the full MVP source. No LICENSE file is currently provided; public source visibility does not itself grant an open-source reuse license. Deployment credentials, real customer data and private infrastructure are excluded. The project was prepared with AI assistance; the linked code and recorded checks are the reviewable evidence.

@@ -1,5 +1,28 @@
 # Verification
 
+## Fresh verification — 2026-10-10
+
+Windows, Node.js 24.15.0, repository lockfile; synthetic loopback settings with `SKIP_DB=1` and placeholder `DATABASE_URL`. No production credentials or real database were used.
+
+| Check | Observed result |
+| --- | --- |
+| `npm ci` | Completed; transient tarball retries recovered |
+| `npm run lint` | Passed |
+| `npm run db:generate` | Passed |
+| `npm run typecheck` | Passed |
+| `npm test` | 5 files, 16 tests passed |
+| `npm run build` | Next.js build completed |
+| `npm run start -- --hostname 127.0.0.1 --port 3000` | Actual start checked on an unused loopback port |
+| Chromium mobile smoke | Eight routes returned 200, no page errors or horizontal overflow at 390px |
+
+Browser routes: `/`, `/services`, `/portfolio`, `/contacts`, `/faq`, `/materials`, `/privacy`, `/admin` (login only). This was a one-off acceptance check, not a new repository test suite. Existing screenshots remain from the previously recorded fictional-data demo.
+
+No Actions workflow is present. PostgreSQL migration/seed, admin writes, authenticated image upload, Docker build and production integration were **not rerun**. Authentication, storage boundary hardening and database/file consistency need further tests before production. Full public source history was scanned with redacted Gitleaks; automated scans are not a guarantee or a full security audit.
+
+Reproduce the README database-free demo and the commands above. Do not use local fallback success as evidence of durable storage or configured administrator access.
+
+## Historical verification — 2026-07-21
+
 Date: 2026-07-21
 
 ## Environment
