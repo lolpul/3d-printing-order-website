@@ -1,13 +1,14 @@
-# Project memory — v2, 2026-10-02
+# Project memory — v3, 2026-10-10
 
-- Purpose: MVP website for a local 3D-printing service; public source at https://github.com/lolpul/3d-printing-order-website, `origin`, branch `main`.
-- Architecture: Next.js App Router and TypeScript, public/admin pages, Prisma/PostgreSQL, server validation and image uploads. See README and `docs/verification.md` for existing implementation/verification details.
-- Documentation baseline: `8f9f5bb0fc2ef38433171640f3c1aabda7e7373c`.
-- Current change: README credits Elisey Kochura (`lolpul`) and links https://elisey.kochura.com. Repository homepage uses the same portfolio URL. There is no matching portfolio case study and no verified project demo; do not imply either exists.
-- Future public project descriptions should preserve an author/profile link and link to a verified matching case study when one exists; otherwise use the portfolio home.
-- Verification for this patch: focused documentation diff, author/portfolio HTTPS responses and public GitHub README/homepage checks. No application code changed or application tests rerun.
-- Existing development commands: `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`. Environment/setup guidance remains in README; never commit actual credentials, uploads or local databases.
-- Rollback: revert the focused documentation commit and restore the previously empty repository homepage. A timestamped local snapshot of the earlier README and metadata is retained outside this public repository.
-- Latest change: README Code highlights points to validation, Prisma server actions, Sharp image processing, authentication, and SEO implementation, with focused test links and explicit verification limits. MVP wording retained; no separate source showcase created.
-- Verified: each claim against current implementation/test source, Markdown targets against the tracked tree, and documentation diff/whitespace. Application code unchanged; historical build/test evidence in verification.md was not rerun for this documentation patch. No CI workflow exists in this repository at this stage.
-- Records: [portfolio links](patches/2026-10-02-1324-portfolio-links.md), [code highlights](patches/2026-10-02-code-highlights.md). Next: profile Additional public code link; maintain factual MVP status. Deployment remains separate scope.
+- Purpose: Full-source public Next.js/Prisma MVP; reproducible database-free local demo.
+- Repository: https://github.com/lolpul/3d-printing-order-website, PUBLIC, main; review branch portfolio-review-2026-10-10. Use git log/PR for delivery SHA.
+- Entry: README Review in 30 seconds → key implementation files/tests; existing architecture and deeper decisions retained.
+- Run/test commands: README and [dated verification](verification.md), checked during this review.
+- Verified: npm ci/lint/generate/typecheck/16 tests/build and 8 browser routes passed; no CI, no PostgreSQL/admin/upload/Docker rerun.
+- Limits: MVP hardening/integration and CI remain pending. Full source already public; no LICENSE added and visibility unchanged.
+- Changes: review navigation, honest maturity/validation wording, reproducible demonstration notes and this compact memory. Application algorithms/tests/workflows unchanged; 3D package description corrected to MVP.
+- Existing public portfolio integration was accepted 2026-10-02; no site deployment or production/network change in this review.
+- IP: no private original files/history, configuration, identifiers or working data transferred. New code/visibility/license/history changes require separate owner decision.
+- Backup: central ignored career-materials/.backups/github-review-20261010-015431 manifest; published-doc rollback via ordinary revert; unrelated files preserved.
+- Next: use these source/test paths for interviews; address documented integration/security/rights gaps through separate scoped work.
+- Patch: [portfolio review](patches/2026-10-10-portfolio-review.md).

@@ -1,7 +1,7 @@
 {
   "name": "3d-printing-order-website",
   "version": "0.1.0",
-  "description": "Responsive order website for custom 3D printing services, built as a production-ready full-stack web application.",
+  "description": "Responsive order website for custom 3D printing services, built as a full-stack MVP with a reproducible local demo.",
   "private": true,
   "scripts": {
     "dev": "next dev",
