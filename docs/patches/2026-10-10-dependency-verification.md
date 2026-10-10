@@ -1,0 +1,15 @@
+# Compatible dependency update and CI — 2026-10-10
+
+- Intent: remove the critical advisory from the MVP lockfile and make its existing checks automatic. Owner explicitly authorised this prepared patch, branch/commit/PR and merge after successful hosted CI.
+- Baseline: main and clean canonical working tree verified at fc38aa65183bb334e451d77dff5fde0a048b168a; no new commits to adapt. The reviewed patch needed CRLF-to-LF normalisation in its local copy before git apply; source content was not changed by that normalisation.
+- Files: package.json/package-lock.json, .github/workflows/verify.yml, README, compact memory, verification, scope and dependency-security documents/receipt. src/lib/storage.ts and storage.test.ts remain identical to the approved baseline.
+- Design: Next/eslint-config-next 16.3.8, Sharp 0.35.5, Vitest 4.1.11 and PostCSS 8.5.23 plus reviewed compatible transitive updates. Prisma/client 6.19.3 retained; no audit fix --force, major override or downgrade.
+- Behavior: application logic is unchanged. CI installs/generates/lints/typechecks/tests/builds and blocks critical audit entries with read-only permissions and pinned actions; it performs no deployment.
+- Local verification: fresh npm ci; Prisma generation; focused storage tests 5/5 and full suite 21/21; lint/typecheck/production build; critical audit gate passed. Browser smoke:8 routes at 390/1280px, all200, no page/console errors or horizontal overflow; fallback health 200/database skipped. Screenshot viewports visually inspected.
+- Security result:21 baseline package entries (1 critical/14 high/6 moderate) →8 high/0 critical/0 moderate; omit-dev still3 high. All remaining entries, two root advisories and practical-exposure limits are recorded in [dependency security](../dependency-security.md). No production exploitability claim.
+- Warnings: Vitest future native config-loader warning; npm/Prisma update notices; Next serverActions experimental banner. They were not hidden. The earlier prototype CSS optimisation warning did not recur in the fresh local checkout. Hosted workflow results/warnings are recorded after its actual run in verification.
+- Not performed: PostgreSQL migration/seed, authenticated admin or upload writes, Docker build, production deployment/configuration. No private source/configuration/history, customer data or original audit artifacts are copied into public docs.
+- Rollback: timestamped manifest with original package/lockfile/docs/storage files and project note retained locally outside Git; baseline SHA remains available. Revert the focused commit or merge using an ordinary reviewed commit, reinstall from the restored lockfile and rerun checks. No reset/clean/force-push or data/branch deletion.
+- Next: require successful current-head GitHub Actions before merge; verify main/tree/workflow afterward, update the existing 3D project note, then stop. Remaining dependency and integration work is separate scope.
+
+- Next.js regenerates next-env.d.ts with the root-params type import in this version; the generated refresh is included in the same patch and its original is backed up. Application/storage logic is unchanged.

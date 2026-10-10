@@ -1,0 +1,288 @@
+{
+  "date": "2026-10-10",
+  "baseline": "fc38aa65183bb334e451d77dff5fde0a048b168a",
+  "baseline_counts": {
+    "info": 0,
+    "low": 0,
+    "moderate": 6,
+    "high": 14,
+    "critical": 1,
+    "total": 21
+  },
+  "updated_counts": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 8,
+    "critical": 0,
+    "total": 8
+  },
+  "omit_dev_counts": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 3,
+    "critical": 0,
+    "total": 3
+  },
+  "remaining": [
+    {
+      "package": "@next/eslint-plugin-next",
+      "installed": "16.3.8",
+      "severity": "high",
+      "via": [
+        "fast-glob"
+      ],
+      "fix_suggestion": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      },
+      "fix_applied": false
+    },
+    {
+      "package": "@prisma/config",
+      "installed": "6.19.3",
+      "severity": "high",
+      "via": [
+        "deepmerge-ts"
+      ],
+      "fix_suggestion": {
+        "name": "prisma",
+        "version": "6.12.0",
+        "isSemVerMajor": true
+      },
+      "fix_applied": false
+    },
+    {
+      "package": "braces",
+      "installed": "3.0.3",
+      "severity": "high",
+      "via": [
+        {
+          "source": 1240992,
+          "name": "braces",
+          "dependency": "braces",
+          "title": "braces vulnerable to stack-exhaustion denial of service through deeply nested patterns",
+          "url": "https://github.com/advisories/GHSA-vfj7-8cjw-p6xm",
+          "severity": "high",
+          "cwe": [
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<=3.0.3"
+        }
+      ],
+      "fix_suggestion": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      },
+      "fix_applied": false
+    },
+    {
+      "package": "deepmerge-ts",
+      "installed": "7.1.5",
+      "severity": "high",
+      "via": [
+        {
+          "source": 1145093,
+          "name": "deepmerge-ts",
+          "dependency": "deepmerge-ts",
+          "title": "DeepmergeTS has stack exhaustion when merging recursive object graphs",
+          "url": "https://github.com/advisories/GHSA-ggr8-5vv4-36mx",
+          "severity": "high",
+          "cwe": [
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<8.0.0"
+        }
+      ],
+      "fix_suggestion": {
+        "name": "prisma",
+        "version": "6.12.0",
+        "isSemVerMajor": true
+      },
+      "fix_applied": false
+    },
+    {
+      "package": "eslint-config-next",
+      "installed": "16.3.8",
+      "severity": "high",
+      "via": [
+        "@next/eslint-plugin-next"
+      ],
+      "fix_suggestion": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      },
+      "fix_applied": false
+    },
+    {
+      "package": "fast-glob",
+      "installed": "3.3.1",
+      "severity": "high",
+      "via": [
+        "micromatch"
+      ],
+      "fix_suggestion": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      },
+      "fix_applied": false
+    },
+    {
+      "package": "micromatch",
+      "installed": "4.0.8",
+      "severity": "high",
+      "via": [
+        "braces"
+      ],
+      "fix_suggestion": {
+        "name": "eslint-config-next",
+        "version": "14.2.35",
+        "isSemVerMajor": true
+      },
+      "fix_applied": false
+    },
+    {
+      "package": "prisma",
+      "installed": "6.19.3",
+      "severity": "high",
+      "via": [
+        "@prisma/config"
+      ],
+      "fix_suggestion": {
+        "name": "prisma",
+        "version": "6.12.0",
+        "isSemVerMajor": true
+      },
+      "fix_applied": false
+    }
+  ],
+  "removed_package_entries": [
+    {
+      "package": "@tailwindcss/postcss",
+      "previous_severity": "moderate",
+      "removed_advisories": []
+    },
+    {
+      "package": "@vitest/mocker",
+      "previous_severity": "moderate",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-82fw-gwwq-j7x9"
+      ]
+    },
+    {
+      "package": "baseline-browser-mapping",
+      "previous_severity": "moderate",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv"
+      ]
+    },
+    {
+      "package": "brace-expansion",
+      "previous_severity": "high",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-mh99-v99m-4gvg",
+        "https://github.com/advisories/GHSA-rgw5-rvv9-x895",
+        "https://github.com/advisories/GHSA-q2hr-2g5m-vwhr",
+        "https://github.com/advisories/GHSA-qhr7-859c-m2p7",
+        "https://github.com/advisories/GHSA-6j4f-fj2g-mc7p"
+      ]
+    },
+    {
+      "package": "browserslist",
+      "previous_severity": "high",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-c83g-rgw3-j3cx",
+        "https://github.com/advisories/GHSA-73wf-gq98-2v4g"
+      ]
+    },
+    {
+      "package": "js-yaml",
+      "previous_severity": "high",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-5p4m-2wfm-xmqj",
+        "https://github.com/advisories/GHSA-2883-xcg3-v3hh"
+      ]
+    },
+    {
+      "package": "nanoid",
+      "previous_severity": "high",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-2v37-7h3g-55p8"
+      ]
+    },
+    {
+      "package": "next",
+      "previous_severity": "critical",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-6gpp-xcg3-4w24",
+        "https://github.com/advisories/GHSA-m99w-x7hq-7vfj",
+        "https://github.com/advisories/GHSA-89xv-2m56-2m9x",
+        "https://github.com/advisories/GHSA-68g3-v927-f742",
+        "https://github.com/advisories/GHSA-4633-3j49-mh5q",
+        "https://github.com/advisories/GHSA-4c39-4ccg-62r3",
+        "https://github.com/advisories/GHSA-p9j2-gv94-2wf4",
+        "https://github.com/advisories/GHSA-q8wf-6r8g-63ch",
+        "https://github.com/advisories/GHSA-955p-x3mx-jcvp",
+        "https://github.com/advisories/GHSA-p293-qw3h-jr36",
+        "https://github.com/advisories/GHSA-2xp9-vwfh-vxw4",
+        "https://github.com/advisories/GHSA-vcvr-r3jv-pc5j",
+        "https://github.com/advisories/GHSA-4jqv-mc3x-m676",
+        "https://github.com/advisories/GHSA-39w2-rjm5-chcv",
+        "https://github.com/advisories/GHSA-f87g-xv8r-7p7x",
+        "https://github.com/advisories/GHSA-mcj8-r9mp-w47p",
+        "https://github.com/advisories/GHSA-cjq9-62q9-8jv4"
+      ]
+    },
+    {
+      "package": "postcss",
+      "previous_severity": "moderate",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-fxqj-rqcc-2cmp"
+      ]
+    },
+    {
+      "package": "sharp",
+      "previous_severity": "high",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-f88m-g3jw-g9cj",
+        "https://github.com/advisories/GHSA-rgj7-g3m4-5g8c",
+        "https://github.com/advisories/GHSA-wq5f-xc86-pv6w"
+      ]
+    },
+    {
+      "package": "source-map-js",
+      "previous_severity": "high",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-68fv-2mgg-jv7q"
+      ]
+    },
+    {
+      "package": "vite",
+      "previous_severity": "moderate",
+      "removed_advisories": []
+    },
+    {
+      "package": "vitest",
+      "previous_severity": "moderate",
+      "removed_advisories": [
+        "https://github.com/advisories/GHSA-82fw-gwwq-j7x9"
+      ]
+    }
+  ],
+  "npm_audit_default_exit": "nonzero because high entries remain",
+  "critical_gate_exit": 0,
+  "forced_fix_used": false
+}

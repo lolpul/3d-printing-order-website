@@ -1,5 +1,31 @@
 # Verification
 
+## Dependency update ? 2026-10-10
+
+Fresh isolated checkout, Windows/Node 24.15.0/npm 11.12.1, updated lockfile, no copied .env or production settings. Synthetic SKIP_DB=1 and placeholder loopback DATABASE_URL only.
+
+| Check | Observed result |
+| --- | --- |
+| npm ci | Clean install completed; 8 known high advisories remain |
+| npm run db:generate | Prisma Client 6.19.3 generated |
+| npm test -- src/lib/storage.test.ts | All 5 containment regressions passed |
+| npm test | 6 files / 21 tests passed |
+| npm run lint / npm run typecheck | Passed |
+| npm run build | Next.js 16.3.8 production build completed |
+| npm audit --audit-level=critical | Exit 0; no critical entries |
+| npm audit / npm audit --omit=dev | 8 high / 3 high; default audit is nonzero |
+| Built loopback server | Started and stopped as a local smoke process |
+| Chromium at 390/1280px | Eight routes at each width: HTTP200, no page/console errors or horizontal overflow |
+| GET /api/health | HTTP200, database explicitly skipped |
+
+Routes: /, /services, /portfolio, /contacts, /faq, /materials, /privacy, /admin (login only). Mobile/desktop screenshot viewports visually inspected. These are one-off acceptance checks, not a new automated browser suite. Storage implementation and its five tests are unchanged from fc38aa6; the focused run confirms the existing fix remains effective after dependency updates.
+
+Warnings retained: Vitest reports future native config-loader incompatibility with the current ESM/CommonJS configuration; npm advertises a new major release; Prisma advertises a major prerelease upgrade; Next reports experimental serverActions. No major upgrade or warning suppression was performed. The earlier prototype generated-CSS warning was not reproduced in this fresh local build. CI logs may include further platform/install notices; record their actual result below after execution.
+
+PostgreSQL migrations/seed, authenticated admin writes, image upload/processing integration, Docker build and production were **not tested**. Fallback success is not durable DB evidence or proof of secure administrator access. [All remaining advisories and exposure assessment](dependency-security.md), [scope](spec-dependency-verification.md) and [patch/rollback](patches/2026-10-10-dependency-verification.md).
+
+[GitHub Actions workflow](../.github/workflows/verify.yml) uses Ubuntu/Node 24 and a critical-only audit gate. Actual hosted results are recorded after the PR checks run; local results above are not presented as hosted CI.
+
 ## Fresh verification — 2026-10-10
 
 Windows, Node.js 24.15.0, repository lockfile; synthetic loopback settings with `SKIP_DB=1` and placeholder `DATABASE_URL`. No production credentials or real database were used.
@@ -17,7 +43,7 @@ Windows, Node.js 24.15.0, repository lockfile; synthetic loopback settings with 
 
 Browser routes: `/`, `/services`, `/portfolio`, `/contacts`, `/faq`, `/materials`, `/privacy`, `/admin` (login only). This was a one-off acceptance check, not a new repository test suite. Existing screenshots remain from the previously recorded fictional-data demo.
 
-No Actions workflow is present. PostgreSQL migration/seed, admin writes, authenticated image upload, Docker build and production integration were **not rerun**. Authentication, storage boundary hardening and database/file consistency need further tests before production. Full public source history was scanned with redacted Gitleaks; automated scans are not a guarantee or a full security audit.
+At the containment baseline fc38aa6, no Actions workflow was present. PostgreSQL migration/seed, admin writes, authenticated image upload, Docker build and production integration were **not rerun**. Authentication, storage boundary hardening and database/file consistency need further tests before production. Full public source history was scanned with redacted Gitleaks; automated scans are not a guarantee or a full security audit.
 
 Reproduce the README database-free demo and the commands above. Do not use local fallback success as evidence of durable storage or configured administrator access.
 
