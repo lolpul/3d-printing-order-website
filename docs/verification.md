@@ -20,11 +20,11 @@ Fresh isolated checkout, Windows/Node 24.15.0/npm 11.12.1, updated lockfile, no 
 
 Routes: /, /services, /portfolio, /contacts, /faq, /materials, /privacy, /admin (login only). Mobile/desktop screenshot viewports visually inspected. These are one-off acceptance checks, not a new automated browser suite. Storage implementation and its five tests are unchanged from fc38aa6; the focused run confirms the existing fix remains effective after dependency updates.
 
-Warnings retained: Vitest reports future native config-loader incompatibility with the current ESM/CommonJS configuration; npm advertises a new major release; Prisma advertises a major prerelease upgrade; Next reports experimental serverActions. No major upgrade or warning suppression was performed. The earlier prototype generated-CSS warning was not reproduced in this fresh local build. CI logs may include further platform/install notices; record their actual result below after execution.
+Warnings retained: Vitest reports future native config-loader incompatibility with the current ESM/CommonJS configuration; npm advertises a new major release; Prisma advertises a major prerelease upgrade; Next reports experimental serverActions. No major upgrade or warning suppression was performed. The earlier prototype generated-CSS warning was not reproduced in this fresh local build. Actual hosted notices and their review are recorded below.
 
 PostgreSQL migrations/seed, authenticated admin writes, image upload/processing integration, Docker build and production were **not tested**. Fallback success is not durable DB evidence or proof of secure administrator access. [All remaining advisories and exposure assessment](dependency-security.md), [scope](spec-dependency-verification.md) and [patch/rollback](patches/2026-10-10-dependency-verification.md).
 
-[GitHub Actions workflow](../.github/workflows/verify.yml) uses Ubuntu/Node 24 and a critical-only audit gate. Actual hosted results are recorded after the PR checks run; local results above are not presented as hosted CI.
+[GitHub Actions workflow](../.github/workflows/verify.yml) uses Ubuntu/Node 24 and a critical-only audit gate. The local results above are separate from the actual hosted receipts below.
 
 ## Fresh verification — 2026-10-10
 
@@ -79,3 +79,16 @@ No production credentials were used for verification.
 The application uses server actions, route handlers, Prisma, image processing, and dynamic admin routes. It is not a static GitHub Pages application. A Node-capable host with PostgreSQL support is the appropriate deployment target.
 
 Next.js/Turbopack currently emits a non-blocking warning about dynamic filesystem tracing through the upload storage route. The build exits successfully.
+
+## Hosted CI acceptance ? 2026-10-10
+
+Implementation commit `8e7c9dc81c0dbadf31e5d3ec3b7e38986f00e93d`, [PR #3](https://github.com/lolpul/3d-printing-order-website/pull/3):
+
+- [Pull-request workflow](https://github.com/lolpul/3d-printing-order-website/actions/runs/38031226376): SUCCESS.
+- [Push workflow](https://github.com/lolpul/3d-printing-order-website/actions/runs/38031225921): SUCCESS.
+
+Ubuntu runner, Node24.21.0/npm11.19.0. All required steps completed successfully: clean install, Prisma generation, ESLint, TypeScript, 21 unit tests, production build and critical audit. Logs retain the same eight high entries and zero critical; no new dependency advisory was introduced. The documentation-only acceptance follow-up retains the implementation/lockfile/workflow; current PR/main results remain visible in the linked workflow.
+
+CI additionally reports install-script approval warnings for @prisma/client6.19.3, @prisma/engines6.19.3, esbuild0.28.1, prisma6.19.3 and unrs-resolver1.12.2. Their versions and registry integrity hashes are identical to the fc38aa6 baseline. Selected entrypoints were inspected: client generation, engine/native binary preparation and CLI environment checks are existing tooling behavior. This is a bounded review, not a complete package/supply-chain audit. No blanket approvals, user npm configuration changes or warning suppression were added. Review a version-pinned script policy as separate maintenance work; the actual current install/generation/tests/build pass.
+
+Vitest's future config-loader warning, Prisma major-upgrade notice, Next experimental banner and npm's high-advisory/script-policy messages remain visible. No production deployment, PostgreSQL or authenticated upload/admin acceptance follows from this CI result.

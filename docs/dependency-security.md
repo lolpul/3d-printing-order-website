@@ -47,3 +47,7 @@ npm suggests downgrading eslint-config-next to 14.2.35 and Prisma to 6.12.0 to c
 The [npm audit threshold](https://docs.npmjs.com/cli/v11/commands/npm-audit/) controls failure severity. Plain `npm audit` remains nonzero due to the known high entries; the critical gate exits zero for this snapshot. It does not suppress or approve high findings, and a new critical entry will fail CI.
 
 Follow-up: track upstream fixes, validate a compatible Prisma/config migration, and test PostgreSQL/authenticated uploads and file/database recovery separately. Keep the existing lexical safeUploadPath fix; symlink policy and real upload exploitability are outside its unit-test proof. No deployment, production configuration or visibility change is included.
+
+## Install-script policy notices
+
+The actual successful CI uses Node24.21.0/npm11.19.0 and reports five unreviewed allowScripts entries for existing Prisma/client/engines, esbuild and unrs-resolver packages. All five version/integrity pairs match the pre-update lockfile, so these are not newly introduced packages or replaced artifacts. Their selected installation entrypoints were inspected; native preparation/client generation and environment checks remain existing behavior. No blanket allowlist or global npm policy change is included. Keep the warning visible and review future version-pinned script approvals independently. [Hosted receipts and limits](verification.md#hosted-ci-acceptance--2026-10-10).
