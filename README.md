@@ -8,7 +8,7 @@ By [Elisey Kochura (lolpul)](https://github.com/lolpul) · [Engineering portfoli
 
 The engineering question is how to connect content administration, validation, image processing and public pages in one application. Start with [server actions](src/app/admin/portfolio/actions.ts), [image storage](src/lib/storage.ts) and [authentication](src/lib/auth.ts); then inspect [validation tests](src/lib/validation.test.ts) and [verification](docs/verification.md).
 
-This is a full-source MVP. The database-free local demo is verified; database/admin/upload integration and operational hardening still need separate validation. There is no GitHub Actions workflow in this repository.
+This is a full-source MVP. The database-free local demo is verified; database/admin/upload integration and operational hardening still need separate validation. [GitHub Actions](https://github.com/lolpul/3d-printing-order-website/actions/workflows/verify.yml) runs install, generation, static checks, tests, build and a critical-advisory gate.
 
 ## Live Demo
 
@@ -189,7 +189,7 @@ The compose setup binds the application to the local machine by default and does
 
 ## Testing
 
-Detailed verification notes are available in [docs/verification.md](docs/verification.md).
+Detailed verification notes are available in [docs/verification.md](docs/verification.md). CI is defined in [.github/workflows/verify.yml](.github/workflows/verify.yml). Remaining advisories and their practical limits are documented in [dependency security](docs/dependency-security.md).
 
 ```bash
 npm run lint
@@ -214,7 +214,7 @@ The public export must not include `.env`, upload contents, logs, local database
 
 MVP. Fresh checks passed on 2026-10-10: lint, typecheck, 21 unit tests, build and eight local pages at mobile width. See [dated verification](docs/verification.md) for commands and limits.
 
-Before production use, remediate the dependency advisories recorded in verification, add database/admin/upload integration tests and CI, review authentication and symlink policy, and define recovery for partial file/database failure. Passing the current tests is not a security audit.
+Before production use, remediate the dependency advisories recorded in verification, add database/admin/upload integration tests, review authentication and symlink policy, and define recovery for partial file/database failure. Passing the current tests is not a security audit.
 
 ## Source and reuse
 
